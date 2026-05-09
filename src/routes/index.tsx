@@ -12,9 +12,10 @@ import {
   GraduationCap,
   TrendingUp,
   Globe2,
+  Smartphone,
 } from "lucide-react";
 import heroImg from "@/assets/hero-ar.jpg";
-import { COMPONENTS, TEAM, SITE } from "@/lib/site";
+import { COMPONENTS, TEAM, SITE, SUPERVISORS } from "@/lib/site";
 import { FloatingParticles } from "@/components/floating-particles";
 import { SectionHeader } from "@/components/page-shell";
 
@@ -65,8 +66,16 @@ function Index() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7"
           >
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              <Sparkles className="h-3 w-3" /> {SITE.projectId} · Research Commercialization
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                <Sparkles className="h-3 w-3" /> {SITE.projectId} · Research Commercialization
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+                <Smartphone className="h-3 w-3" /> Android Only
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-500">
+                <Globe2 className="h-3 w-3" /> EN / SI
+              </div>
             </div>
             <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               <span className="text-gradient-brand">Narrative AR</span>
@@ -277,25 +286,83 @@ function Index() {
       {/* TEAM PREVIEW */}
       <section className="relative mx-auto max-w-7xl px-4 py-24">
         <SectionHeader eyebrow="The Team" title="Researchers building the future of learning" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="glass group rounded-2xl p-5 text-center transition hover:ring-glow"
-            >
-              <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-brand text-xl font-display font-bold text-gold shadow-glow">
-                {p.initials}
-              </div>
-              <h3 className="mt-4 font-display font-semibold">{p.name}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">{p.role}</p>
-            </motion.div>
-          ))}
+        
+        <div className="mt-12 flex flex-col xl:flex-row gap-12 xl:gap-8 justify-center items-center xl:items-start">
+          
+          {/* Supervisors Section */}
+          <div className="flex-none">
+            <h2 className="mb-8 font-display text-2xl font-bold flex items-center justify-center xl:justify-start gap-4 text-white">
+              <span className="w-8 h-px bg-gold"></span> Supervisors
+            </h2>
+            <div className="flex flex-wrap justify-center gap-5">
+              {SUPERVISORS.map((p, i) => (
+                <motion.article
+                  key={p.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="group relative w-44 sm:w-48 aspect-[3/4] overflow-hidden rounded-3xl bg-neutral-200 transition hover:ring-glow shrink-0"
+                >
+                  {p.image ? (
+                    <img src={p.image} alt={p.name} className="absolute inset-0 h-full w-full object-cover object-top" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-300 to-neutral-400">
+                      <span className="font-display text-4xl font-bold text-neutral-500">{p.initials}</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+                    <h3 className="font-display text-lg font-bold leading-tight text-white shadow-sm">{p.name}</h3>
+                    {p.role && (
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-gold drop-shadow-md">{p.role}</p>
+                    )}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+
+          {/* Vertical Divider */}
+          <div className="hidden xl:block w-px bg-border/40 self-stretch mt-12 mb-4"></div>
+
+          {/* Team Members Section */}
+          <div className="flex-none">
+            <h2 className="mb-8 font-display text-2xl font-bold flex items-center justify-center xl:justify-start gap-4 text-white">
+              <span className="w-8 h-px bg-gold"></span> Team Members
+            </h2>
+            <div className="flex flex-wrap justify-center gap-5">
+              {TEAM.map((p, i) => (
+                <motion.article
+                  key={p.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="group relative w-44 sm:w-48 aspect-[3/4] overflow-hidden rounded-3xl bg-neutral-200 transition hover:ring-glow shrink-0"
+                >
+                  {p.image ? (
+                    <img src={p.image} alt={p.name} className="absolute inset-0 h-full w-full object-cover object-top" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-300 to-neutral-400">
+                      <span className="font-display text-4xl font-bold text-neutral-500">{p.initials}</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+                    <h3 className="font-display text-lg font-bold leading-tight text-white shadow-sm">{p.name}</h3>
+                    {p.role && (
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-gold drop-shadow-md">{p.role}</p>
+                    )}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+          
         </div>
-        <div className="mt-10 text-center">
+
+        <div className="mt-14 text-center">
           <Link to="/team" className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:underline">
             Meet the full team <ArrowRight className="h-4 w-4" />
           </Link>

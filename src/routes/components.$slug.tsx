@@ -249,7 +249,13 @@ function Detail({ c }: { c: ComponentItem }) {
             <h2 className="mt-3 font-display text-2xl font-bold">Download Resources</h2>
             <div className="mt-5 grid gap-2">
               {["Proposal PDF", "Poster", "Presentation", "Demo APK"].map((r) => (
-                <a key={r} href="#" className="glass flex items-center justify-between rounded-xl p-3 text-sm hover:ring-glow">
+                <a 
+                  key={r} 
+                  href={r === "Proposal PDF" ? c.pdf : "#"} 
+                  target={r === "Proposal PDF" ? "_blank" : undefined}
+                  rel={r === "Proposal PDF" ? "noopener noreferrer" : undefined}
+                  className="glass flex items-center justify-between rounded-xl p-3 text-sm hover:ring-glow"
+                >
                   <span>{r}</span>
                   <Download className="h-4 w-4 text-gold" />
                 </a>

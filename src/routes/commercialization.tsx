@@ -29,7 +29,7 @@ const blocks = [
 const roadmap = [
   { y: "Year 1", t: "Validate", d: "Classroom pilots across 4 components, peer-reviewed publication, teacher co-design network." },
   { y: "Year 2", t: "Productize", d: "Unified AR platform, teacher dashboard, content authoring suite, first paid pilots." },
-  { y: "Year 3", t: "Scale", d: "Provincial rollouts, multilingual content (Sinhala, Tamil, English), publisher partnerships." },
+  { y: "Year 3", t: "Scale", d: "Provincial rollouts, multilingual content (English, Sinhala), publisher partnerships." },
   { y: "Year 4", t: "Expand", d: "Regional expansion across South Asia, AI-personalised learning, ecosystem APIs." },
 ];
 

@@ -1,27 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Download, FileText, Image as ImageIcon, Presentation, Github, BookOpen, Smartphone } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 import { PageHero } from "@/components/page-shell";
-import { COMPONENTS } from "@/lib/site";
+
+import pdfLife from "@/assets/R26-IM-003_IT22136374_JAYASUNDARA_R.K.M.J.Y.pdf";
+import pdfMeasure from "@/assets/R26-IM-003_IT22100498_BANDARA M.R.J.K.pdf";
+import pdfPhysics from "@/assets/R26-IM-003_IT22128072_Ilayperuma_M_I.pdf";
+import pdfNumbers from "@/assets/R26-IM-003_IT22177100_Mendis_B.M.U.I.pdf";
 
 export const Route = createFileRoute("/downloads")({
   head: () => ({
     meta: [
       { title: "Downloads - Narrative AR · STEAM" },
-      { name: "description", content: "Proposals, posters, presentations, brochures, GitHub repos, research summaries and demo APKs." },
+      { name: "description", content: "Individual research proposals." },
     ],
   }),
   component: Downloads,
 });
 
-const sections = [
-  { icon: FileText, title: "Proposal PDFs", desc: "Full research proposals for each AR component." },
-  { icon: ImageIcon, title: "Posters", desc: "High-resolution research posters." },
-  { icon: Presentation, title: "Presentations", desc: "Project pitch decks and slides." },
-  { icon: BookOpen, title: "Brochures", desc: "Audience-friendly project brochures." },
-  { icon: Github, title: "GitHub Repositories", desc: "Source code and Unity projects." },
-  { icon: FileText, title: "Research Summaries", desc: "Concise executive summaries." },
-  { icon: Smartphone, title: "Demo APKs", desc: "Android AR demo builds." },
+const proposals = [
+  { name: "R26-IM-003_IT22128072_Ilayperuma_M_I.pdf", url: pdfPhysics },
+  { name: "R26-IM-003_IT22177100_Mendis_B.M.U.I.pdf", url: pdfNumbers },
+  { name: "R26-IM-003_IT22100498_BANDARA M.R.J.K.pdf", url: pdfMeasure },
+  { name: "R26-IM-003_IT22136374_JAYASUNDARA_R.K.M.J.Y.pdf", url: pdfLife },
 ];
 
 function Downloads() {
@@ -34,36 +35,35 @@ function Downloads() {
       />
       <section className="mx-auto max-w-7xl px-4 py-20">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {sections.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 3) * 0.08 }}
-              className="glass rounded-2xl p-6"
-            >
-              <div className="flex items-center gap-3">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand shadow-glow">
-                  <s.icon className="h-5 w-5 text-gold" />
-                </span>
-                <h3 className="font-display text-lg font-semibold">{s.title}</h3>
-              </div>
-              <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
-              <div className="mt-4 grid gap-2">
-                {COMPONENTS.map((c) => (
-                  <a
-                    key={c.slug}
-                    href="#"
-                    className="glass flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition hover:ring-glow"
-                  >
-                    <span className="truncate">{c.title}</span>
-                    <Download className="h-4 w-4 flex-none text-gold" />
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass rounded-2xl p-6 lg:col-span-2 md:col-span-2"
+          >
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand shadow-glow">
+                <FileText className="h-5 w-5 text-gold" />
+              </span>
+              <h3 className="font-display text-lg font-semibold">Individual proposals</h3>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">Full research proposals for each AR component.</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {proposals.map((p) => (
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass flex items-center justify-between rounded-xl px-4 py-3 text-sm transition hover:ring-glow"
+                  title={p.name}
+                >
+                  <span className="truncate mr-3 font-medium">{p.name}</span>
+                  <Download className="h-4 w-4 flex-none text-gold" />
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>
